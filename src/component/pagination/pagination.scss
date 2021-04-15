@@ -1,0 +1,20 @@
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+}
+
+.pagination-item {
+  font-size: 18px;
+  width: 25px;
+  height: 25px;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &--active {
+    box-shadow: 0 0 5px cadetblue;
+    border-radius: 50%;
+    background-color: cadetblue;
+  }
+}
