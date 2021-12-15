@@ -205,6 +205,7 @@ class App extends React.Component {
         <p>
           <i>еще строка для количества добавлена в тест 1</i>
         </p>
+        <p>добавили в тест 2</p>
         <input
           className={`search__input`}
           onChange={this.handleInput}
