@@ -203,6 +203,7 @@ class App extends React.Component {
       <React.Fragment>
         <h1>URMyHero</h1>
         <h4>этот подзаголовок добавили в test 1</h4>
+        <h6>добавили после rebase test1</h6>
         <form className={`search`} method="get" action="">
           <p>
             <i>еще строка для количества добавлена в тест 1</i>
