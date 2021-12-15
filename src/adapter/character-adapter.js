@@ -45,7 +45,7 @@ export const rebuildCharacterData = (character) => {
   return {
     "name": character.name,
     "image": character.image.original_url,
-    "fullName": character.real_name,
+    "realName": character.real_name,
     "alterEgos": character.aliases,
     "deck": character.deck,
     "description": character.description,

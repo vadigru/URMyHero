@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 import './pagination.scss';
 
 class Pagination extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -21,7 +21,7 @@ class Pagination extends Component {
   }
 
   render() {
-    console.log(this.state.activePage);
+    // console.log(this.state.activePage);
     return (
       <ul className="pagination">
         {this.renderPagesCount(this.props.entriesAmnt).map((it, i) => {
@@ -43,5 +43,10 @@ class Pagination extends Component {
     );
   }
 }
+
+Pagination.propTypes = {
+  getCharacters: PropTypes.func.isRequired,
+  entriesAmnt: PropTypes.number,
+};
 
 export default Pagination;

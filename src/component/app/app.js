@@ -1,12 +1,16 @@
 import React from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
+import {ActionCreator as StateActionCreator} from "../../reducer/state/state.js";
+import {getMessage} from "../../reducer/state/selectors.js";
 import Pagination from "../pagination/pagination.js";
 
 import {rebuildCharacterData} from '../../adapter/character-adapter.js';
 import './app.scss';
 
-class App extends React.PureComponent {
+class App extends React.Component {
   constructor(props) {
     super(props);
 
@@ -19,7 +23,6 @@ class App extends React.PureComponent {
       isCharacterLoaded: false,
       isCharactersFetching: false,
       isCharacterFetching: false,
-      message: ``
     };
 
     this.inputRef = React.createRef();
@@ -37,8 +40,8 @@ class App extends React.PureComponent {
   handleInput(evt) {
     this.setState({
       query: evt.target.value,
-      message: ``
     });
+    this.props.setMessage(``);
   }
 
   getCharacters(evt, startFrom = 0) {
@@ -63,7 +66,8 @@ class App extends React.PureComponent {
         (response) => {
           // console.log(response.data)
           if (!response.data.number_of_page_results) {
-            this.setState({message: `Nothing found on your query!`});
+            this.props.setMessage(`Nothing found on your query!`);
+
           }
           this.setState({
             // ...this.state,
@@ -117,7 +121,7 @@ class App extends React.PureComponent {
     console.log(this.state.character);
     return (
       <>
-        <h2>{character.name} {character.fullName !== `` ? `: ${character.fullName}` : null}</h2>
+        <h2>{character.name} {character.realName && character.name !== character.realName ? `: ${character.realName} ` : ``}</h2>
         <p><img className={`character__image`} src={character.image} /></p>
         <p>{character.deck}</p>
         {/* <p dangerouslySetInnerHTML={{__html: character.description}} /> */}
@@ -181,35 +185,49 @@ class App extends React.PureComponent {
     evt.preventDefault();
     switch (true) {
       case this.state.query === ``:
-        this.setState({message: `Field should not be empty!`});
+        this.props.setMessage(`Field should not be empty!`);
+
         return;
       case this.state.query.length < 3:
-        this.setState({message: `Query length should be at least 3 symbols!`});
+        this.props.setMessage(`Query length should be at least 3 symbols!`);
         return;
       default:
         this.getCharacters(evt);
-        this.setState({data: null, message: ``});
+        this.setState({data: null});
+        this.props.setMessage(``);
     }
   }
 
+  renderSearch() {
+    return (
+      <form className={`search`} method="get" action="">
+        <input
+          className={`search__input`}
+          onChange={this.handleInput}
+          value={this.state.query}
+          ref={this.inputRef}
+        />
+        <input
+          className={`search__button`}
+          type="submit"
+          onClick={(evt) => {
+            this.validation(evt);
+          }}
+          value="SEARCH"
+        />
+        <span
+          className={`search__message`}
+        >
+          {this.props.message}
+        </span>
+      </form>
+    );
+  }
   render() {
+    console.log(this.props);
     return (
       <>
-        <form method="get" action="">
-          <input
-            onChange={this.handleInput}
-            value={this.state.query}
-            ref={this.inputRef}
-          />
-          <input
-            type="submit"
-            onClick={(evt) => {
-              this.validation(evt);
-            }}
-            value="SEARCH"
-          />
-          <span>{this.state.message}</span>
-        </form>
+        {this.renderSearch()}
         {this.state.data ? <Pagination entriesAmnt={this.state.data.number_of_total_results} getCharacters={this.getCharacters} /> : null}
         {this.renderData()}
       </>
@@ -217,4 +235,21 @@ class App extends React.PureComponent {
   }
 }
 
-export default App;
+App.propTypes = {
+  message: PropTypes.string,
+  setMessage: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  message: getMessage(state),
+  state
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setMessage(message) {
+    dispatch(StateActionCreator.setMessage(message));
+  },
+});
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);
