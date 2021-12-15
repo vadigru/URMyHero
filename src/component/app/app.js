@@ -202,6 +202,9 @@ class App extends React.Component {
     return (
       <form className={`search`} method="get" action="">
         <h4>этот подзаголовок добавили в test 1</h4>
+        <p>
+          <i>еще строка для количества добавлена в тест 1</i>
+        </p>
         <input
           className={`search__input`}
           onChange={this.handleInput}
