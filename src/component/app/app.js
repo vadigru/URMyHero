@@ -200,32 +200,35 @@ class App extends React.Component {
 
   renderSearch() {
     return (
-      <form className={`search`} method="get" action="">
+      <React.Fragment>
+        <h1>URMyHero</h1>
         <h4>этот подзаголовок добавили в test 1</h4>
-        <p>
-          <i>еще строка для количества добавлена в тест 1</i>
-        </p>
-        <p>добавили в тест 2</p>
-        <input
-          className={`search__input`}
-          onChange={this.handleInput}
-          value={this.state.query}
-          ref={this.inputRef}
-        />
-        <input
-          className={`search__button`}
-          type="submit"
-          onClick={(evt) => {
-            this.validation(evt);
-          }}
-          value="SEARCH"
-        />
-        <span
-          className={`search__message`}
-        >
-          {this.props.message}
-        </span>
-      </form>
+        <form className={`search`} method="get" action="">
+          <p>
+            <i>еще строка для количества добавлена в тест 1</i>
+          </p>
+          <p>добавили в тест 2</p>
+          <input
+            className={`search__input`}
+            onChange={this.handleInput}
+            value={this.state.query}
+            ref={this.inputRef}
+          />
+          <input
+            className={`search__button`}
+            type="submit"
+            onClick={(evt) => {
+              this.validation(evt);
+            }}
+            value="SEARCH"
+          />
+          <span
+            className={`search__message`}
+          >
+            {this.props.message}
+          </span>
+        </form>
+      </React.Fragment>
     );
   }
   render() {
