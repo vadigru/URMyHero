@@ -4,7 +4,12 @@ env:
   commonjs: true
   jest: true
 
-extends: ['htmlacademy/es6', 'plugin:react/recommended']
+extends: [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ]
+
+parser: "@babel/eslint-parser"
 
 parserOptions:
   ecmaFeatures:
@@ -30,6 +35,11 @@ parserOptions:
   jsx: true
 
 plugins: ['react']
+
+rules: {
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+  }
 
 settings:
   react:

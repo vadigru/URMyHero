@@ -1,0 +1,21 @@
+.characters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  // border: 2px solid green;
+  &__item {
+    text-align: center;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    border: 2px solid red;
+    list-style-type: none;
+  }
+  &__item-title {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 25px;
+    // border: 2px solid yellow;
+  }
+}

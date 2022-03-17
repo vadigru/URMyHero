@@ -1,0 +1,21 @@
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  position: relative;
+  max-width: 1440px;
+  margin: 0 auto;
+  border: 2px solid teal;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.list__item {
+  width: 180px;
+  margin: 0 10px;
+}

@@ -1,0 +1,32 @@
+.character {
+  width: 600px;
+  text-align: center;
+  margin: 0 auto;
+
+  &__title {
+  }
+  &__image {
+    img {
+      width: 450px;
+    }
+  }
+  &__lists {
+    display: flex;
+    justify-content: space-evenly;
+    width: 600px;
+  }
+  &__list {
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      li {
+        padding: 5px 15px;
+      }
+    }
+  }
+  &__list-title {
+
+  }
+}

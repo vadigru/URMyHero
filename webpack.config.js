@@ -8,11 +8,13 @@ module.exports = {
     app: `./src/index.js`
   },
   output: {
+    path: path.join(__dirname, `/public`),
     filename: `./[name].js`,
-    path: path.join(__dirname, `public`)
   },
+  mode: `development`,
   devServer: {
-    contentBase: path.join(__dirname, `public`),
+    // inline: false,
+    static: path.join(__dirname, `/public`),
     open: true,
     port: 1337,
   },
@@ -32,14 +34,25 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader,
           },
           {
-            loader: `css-loader?url=false`,
+            loader: `css-loader`,
+            options: {
+              url: true,
+            },
           },
           {
             loader: `postcss-loader`,
             options: {
-              config: {
-                path: `./postcss.config.js`
-              }
+              postcssOptions: {
+                plugins: [
+                  [
+                    `postcss-preset-env`,
+                    {
+                      // Options
+                    },
+                  ],
+                ],
+              },
+
             }
           },
           {

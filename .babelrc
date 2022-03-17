@@ -9,7 +9,8 @@
     }]
   ],
   "plugins": [
-    "emotion",
-    ["transform-object-rest-spread", { "useBuiltIns": true }]
+    "@emotion",
+    // ["transform-object-rest-spread", { "useBuiltIns": true }],
+    "@babel/plugin-proposal-object-rest-spread"
   ]
 }
