@@ -6,6 +6,9 @@ import {extend} from "../../utils/common.js";
 
 import { charactersCount } from '../../constants.js';
 
+const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
+const baseUrl = `https://comicvine.gamespot.com/api/`;
+
 const initialState = {
   data: {},
   characters: [],
@@ -51,12 +54,14 @@ const Operation = {
     dispatch(StateActionCreator.setCharacterFetching(false));
     dispatch(StateActionCreator.setCharacterLoaded(false));
     dispatch(StateActionCreator.setMessage(`CHARACTERS DATA IS LOADING...`));
+
+    const queryParams = `characters/?api_key=f768f741063f78c61004758737afa932be2d4d8d&filter=name:${query}&limit=${charactersCount}&offset=${startFrom}&format=json`;
     const options = {
       method: `GET`,
       // url: `http://www.omdbapi.com/?t=${this.state.query}&plot=full&apikey=a74a9baa`,
       // url: `http://www.omdbapi.com/?s=${this.state.query}&apikey=a74a9baa`,
       // url: `https://superheroapi.com/api/1927473677409570/search/${this.state.query}`,
-      url: `https://comicvine.gamespot.com/api/characters/?api_key=f768f741063f78c61004758737afa932be2d4d8d&filter=name:${query}&limit=${charactersCount}&offset=${startFrom}&format=json`,
+      url: proxyUrl + baseUrl + queryParams,
       // url: `https://comicvine.gamespot.com/api/characters/?api_key=f768f741063f78c61004758737afa932be2d4d8d&sort=name&format=json`,
       // url: `https://api.shortboxed.com/comics/v1/new`
     };
@@ -88,12 +93,13 @@ const Operation = {
     dispatch(StateActionCreator.setCharacterFetching(true));
     dispatch(StateActionCreator.setCharacterLoaded(false));
     dispatch(StateActionCreator.setMessage(`CHARACTER DATA IS LOADING...`));
+    const queryParams = `character/4005-${id}/?api_key=f768f741063f78c61004758737afa932be2d4d8d&format=json`;
     const options = {
       method: `GET`,
       // url: `http://www.omdbapi.com/?t=${this.state.query}&plot=full&apikey=a74a9baa`,
       // url: `http://www.omdbapi.com/?s=${this.state.query}&apikey=a74a9baa`,
       // url: `https://superheroapi.com/api/1927473677409570/${id}`,
-      url: `https://comicvine.gamespot.com/api/character/4005-${id}/?api_key=f768f741063f78c61004758737afa932be2d4d8d&format=json`,
+      url: proxyUrl + baseUrl + queryParams,
       // url: `https://api.shortboxed.com/comics/v1/new`
     };
     axios.request(options).then(

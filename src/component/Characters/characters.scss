@@ -1,11 +1,11 @@
 .characters {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  // border: 2px solid green;
+  justify-content: space-around;
+  border: 2px solid green;
   &__item {
     text-align: center;
-    width: 250px;
+    width: 270px;
     margin: 0;
     padding: 0;
     border: 2px solid red;
@@ -15,7 +15,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    font-size: 25px;
+    font-size: 22px;
     // border: 2px solid yellow;
   }
 }
