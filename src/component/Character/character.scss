@@ -1,5 +1,5 @@
 .character {
-  width: 600px;
+  max-width: 600px;
   text-align: center;
   margin: 0 auto;
 
@@ -7,16 +7,17 @@
   }
   &__image {
     img {
-      width: 450px;
+      width: 100%;
+      max-width: 450px;
     }
   }
   &__lists {
     display: flex;
-    justify-content: space-evenly;
-    width: 600px;
+    justify-content: space-around;
+    max-width: 600px;
   }
   &__list {
-
+    width: 50%;
     ul {
       list-style-type: none;
       margin: 0;

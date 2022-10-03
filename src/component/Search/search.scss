@@ -1,4 +1,23 @@
 .search {
-  margin-right: 50px;
-  border: 2px solid fuchsia;
+  position: relative;
+  // margin-right: 50px;
+  // border: 2px solid fuchsia;
+
+  &__form {
+    width: 110%;
+    margin: 0 auto;
+  }
+  &__input {
+    width: 60%;
+  }
+  &__button {
+    width: 30%;
+  }
+  &__message {
+    // width: max-content;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    // border: 2px solid turquoise;
+  }
 }

@@ -18,8 +18,18 @@
     cursor: pointer;
   }
   &--active {
+    color: white;
+    position: relative;
+  }
+  &--active::before {
+    content: '';
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: -4px;
     box-shadow: 0 0 5px cadetblue;
     border-radius: 50%;
-    // background-color: cadetblue;
+    background-color: cadetblue;
+    z-index: -1;
   }
 }

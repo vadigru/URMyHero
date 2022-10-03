@@ -6,7 +6,6 @@ import {extend} from "../../utils/common.js";
 
 import { charactersCount } from '../../constants.js';
 
-const proxyUrl = `https://cors-anywhere.herokuapp.com/`;
 const baseUrl = `https://comicvine.gamespot.com/api/`;
 
 const initialState = {
@@ -61,7 +60,7 @@ const Operation = {
       // url: `http://www.omdbapi.com/?t=${this.state.query}&plot=full&apikey=a74a9baa`,
       // url: `http://www.omdbapi.com/?s=${this.state.query}&apikey=a74a9baa`,
       // url: `https://superheroapi.com/api/1927473677409570/search/${this.state.query}`,
-      url: proxyUrl + baseUrl + queryParams,
+      url: baseUrl + queryParams,
       // url: `https://comicvine.gamespot.com/api/characters/?api_key=f768f741063f78c61004758737afa932be2d4d8d&sort=name&format=json`,
       // url: `https://api.shortboxed.com/comics/v1/new`
     };
@@ -99,7 +98,7 @@ const Operation = {
       // url: `http://www.omdbapi.com/?t=${this.state.query}&plot=full&apikey=a74a9baa`,
       // url: `http://www.omdbapi.com/?s=${this.state.query}&apikey=a74a9baa`,
       // url: `https://superheroapi.com/api/1927473677409570/${id}`,
-      url: proxyUrl + baseUrl + queryParams,
+      url: baseUrl + queryParams,
       // url: `https://api.shortboxed.com/comics/v1/new`
     };
     axios.request(options).then(

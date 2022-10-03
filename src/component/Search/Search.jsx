@@ -48,8 +48,8 @@ class Search extends Component {
 
   render() {
     return (
-      <>
-        <form className={`search`} method="get" action="">
+      <section className="search">
+        <form className={`search__form`} method="get" action="">
           <input
             className={`search__input`}
             onChange={this.handleInput}
@@ -62,13 +62,9 @@ class Search extends Component {
             onClick={this.validation}
             value="SEARCH"
           />
-          <span
-            className={`search__message`}
-          >
-          </span>
+          <span className='search__message'>{this.state.searchMessage}</span>
         </form>
-        <span>{this.state.searchMessage}</span>
-      </>
+      </section>
     );
   }
 }
