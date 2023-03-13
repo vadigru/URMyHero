@@ -1,5 +1,6 @@
 // import {formatMovieTime} from "../utils/common.js";
 export const rebuildCharacterData = (character) => {
+  console.log('REBUILD', character);
   // return {
   //   "response": character.response,
   //   "id": character.id,
@@ -42,13 +43,23 @@ export const rebuildCharacterData = (character) => {
   //   }
   // };
 
-  return {
+    return {
     "name": character.name,
-    "image": character.image.original_url,
-    "realName": character.real_name,
-    "alterEgos": character.aliases,
-    "deck": character.deck,
-    "description": character.description,
-    "groupAffiliation": character.teams,
+    "image": character.image.url,
+    "realName": character.biography[`full-name`],
+    "alterEgos": character.biography[`alter-egos`],
+    "relatives": character.connections.relatives,
+    "description": character.work.occupation,
+    "groupAffiliation": character.connections[`group-affiliation`],
   };
+
+  // return {
+  //   "name": character.name,
+  //   "image": character.image.original_url,
+  //   "realName": character.real_name,
+  //   "alterEgos": character.aliases,
+  //   "deck": character.deck,
+  //   "description": character.description,
+  //   "groupAffiliation": character.teams,
+  // };
 };

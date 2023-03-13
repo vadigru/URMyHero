@@ -1,5 +1,5 @@
 .character {
-  max-width: 600px;
+  max-width: 1280px;
   text-align: center;
   margin: 0 auto;
 
@@ -14,16 +14,19 @@
   &__lists {
     display: flex;
     justify-content: space-around;
-    max-width: 600px;
+    max-width: 1280px;
   }
   &__list {
-    width: 50%;
+    width: 33.333%;
+    border: 2px solid red;
     ul {
       list-style-type: none;
       margin: 0;
       padding: 0;
       li {
-        padding: 5px 15px;
+        padding: 5px 0;
+    border: 2px solid red;
+
       }
     }
   }

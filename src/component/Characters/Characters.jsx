@@ -23,8 +23,8 @@ class Characters extends Component {
         {this.props.characters.map((character, i) => {
           return (
             <li key={character.name + i} className={`characters__item`}>
-              <h2 className="characters__item-title" onClick={() => this.props.getCharacter(character.id)}>{character.name}</h2>
-              <p className="characters__item-image" onClick={() => this.props.getCharacter(character.id)} >{character.image.original_url ? <img src={character.image.original_url} width="200px" height="auto"/> : `No poster found for this character :-(`}</p>
+              <h2 className="characters__item-title" onClick={() => this.props.getCharacter(+character.id)}>{character.name}</h2>
+              <p className="characters__item-image" onClick={() => this.props.getCharacter(+character.id)} >{character.image.url ? <img src={character.image.url} width="200px" height="auto"/> : `No poster found for this character :-(`}</p>
             </li>
           );
         })}

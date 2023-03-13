@@ -6,7 +6,8 @@ import {extend} from "../../utils/common.js";
 
 import { charactersCount } from '../../constants.js';
 
-const baseUrl = `https://comicvine.gamespot.com/api/`;
+// const baseUrl = `https://comicvine.gamespot.com/api/`;
+const baseUrl = `https://www.superheroapi.com/api.php/`;
 
 const initialState = {
   data: {},
@@ -54,35 +55,42 @@ const Operation = {
     dispatch(StateActionCreator.setCharacterLoaded(false));
     dispatch(StateActionCreator.setMessage(`CHARACTERS DATA IS LOADING...`));
 
-    const queryParams = `characters/?api_key=f768f741063f78c61004758737afa932be2d4d8d&filter=name:${query}&limit=${charactersCount}&offset=${startFrom}&format=json`;
+    // const queryParams = `characters/?api_key=f768f741063f78c61004758737afa932be2d4d8d&filter=name:${query}&limit=${charactersCount}&offset=${startFrom}&format=json`;
+    const queryParams = `1927473677409570/search/${query}`;
     const options = {
       method: `GET`,
       // url: `http://www.omdbapi.com/?t=${this.state.query}&plot=full&apikey=a74a9baa`,
       // url: `http://www.omdbapi.com/?s=${this.state.query}&apikey=a74a9baa`,
       // url: `https://superheroapi.com/api/1927473677409570/search/${this.state.query}`,
-      url: baseUrl + queryParams,
+      mode: 'cors',
+      // url: baseUrl + queryParams,
+      headers: {
+        "Content-Type": "application/json",
+        // 'Access-Control-Allow-Credentials':true,
+        // 'crossorigin':true,
+        // "Access-Control-Allow-Origin" : "*"
+      }
       // url: `https://comicvine.gamespot.com/api/characters/?api_key=f768f741063f78c61004758737afa932be2d4d8d&sort=name&format=json`,
       // url: `https://api.shortboxed.com/comics/v1/new`
     };
     console.log(options);
-    axios.request(options).then(
-        (response) => {
-          console.log(response.data)
-          if (!response.data.number_of_page_results) {
-            dispatch(StateActionCreator.setMessage(`Nothing found on your query!`));
-          } else {
-            dispatch(ActionCreator.setData(response.data));
-            dispatch(ActionCreator.setCharacters(response.data.response !== `error` ? response.data.results : []));
-            dispatch(StateActionCreator.setCharactersFetching(false));
-            dispatch(StateActionCreator.setCharactersLoaded(true));
-            dispatch(StateActionCreator.setCharacterFetching(false));
-            dispatch(StateActionCreator.setCharacterLoaded(false));
-            dispatch(StateActionCreator.setMessage(``));
-          }
-
+    fetch(baseUrl + queryParams, options)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+        if (!data.results) {
+          dispatch(StateActionCreator.setMessage(`Nothing found on your query!`));
+        } else {
+          dispatch(ActionCreator.setData(data.results));
+          dispatch(ActionCreator.setCharacters(data.response !== `error` ? data.results : []));
+          dispatch(StateActionCreator.setCharactersFetching(false));
+          dispatch(StateActionCreator.setCharactersLoaded(true));
+          dispatch(StateActionCreator.setCharacterFetching(false));
+          dispatch(StateActionCreator.setCharacterLoaded(false));
+          dispatch(StateActionCreator.setMessage(``));
         }
-
-    ).catch((error) => {
+    })
+    .catch((error) => {
       console.log(error);
     });
   },
@@ -92,20 +100,31 @@ const Operation = {
     dispatch(StateActionCreator.setCharacterFetching(true));
     dispatch(StateActionCreator.setCharacterLoaded(false));
     dispatch(StateActionCreator.setMessage(`CHARACTER DATA IS LOADING...`));
-    const queryParams = `character/4005-${id}/?api_key=f768f741063f78c61004758737afa932be2d4d8d&format=json`;
+    // const queryParams = `character/4005-${id}/?api_key=f768f741063f78c61004758737afa932be2d4d8d&format=json`;
+    const queryParams = `1927473677409570/${id}`;
     const options = {
       method: `GET`,
+      mode: 'cors',
+      // url: baseUrl + queryParams,
+      headers: {
+        "Content-Type": "application/json",
+        // 'Access-Control-Allow-Credentials':true,
+        // 'crossorigin':true,
+        // "Access-Control-Allow-Origin" : "*"
+      }
       // url: `http://www.omdbapi.com/?t=${this.state.query}&plot=full&apikey=a74a9baa`,
       // url: `http://www.omdbapi.com/?s=${this.state.query}&apikey=a74a9baa`,
       // url: `https://superheroapi.com/api/1927473677409570/${id}`,
-      url: baseUrl + queryParams,
+      // url: baseUrl + queryParams,
       // url: `https://api.shortboxed.com/comics/v1/new`
     };
-    axios.request(options).then(
-        // (response) => console.log(response),
-        (response) => {
-          console.log('getCharacter: (id) => (dispatch) =>', response.data.results);
-          dispatch(ActionCreator.setCharacter(response.data.results));
+    fetch(baseUrl + queryParams, options)
+      .then((response) => response.json())
+      .then(
+        // (data) => console.log(data),
+        (data) => {
+          console.log('getCharacter: (id) => (dispatch) =>', data);
+          dispatch(ActionCreator.setCharacter(data));
           dispatch(StateActionCreator.setCharactersFetching(false));
           dispatch(StateActionCreator.setCharactersLoaded(false));
           dispatch(StateActionCreator.setCharacterFetching(false));

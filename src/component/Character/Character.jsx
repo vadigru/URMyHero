@@ -23,16 +23,15 @@ class Character extends React.Component {
 
   render() {
     const character = rebuildCharacterData(this.props.character);
-    console.log(this.state.character);
-    console.log(this.props);
+    // console.log(this.state.character);
+    console.log(character);
     return (
       <div className="character">
         <h2 className="character__title">{character.name} {character.realName && character.name !== character.realName ? `: ${character.realName} ` : ``}</h2>
         <p className="character__image">
           <img src={character.image} />
         </p>
-        <p className="character__description">{character.deck}</p>
-        {/* <p dangerouslySetInnerHTML={{__html: character.description}} /> */}
+        <p className="character__description">{character.description}</p>
         <div className="character__lists">
           <section className="character__list">
             <h3 className="character__list-title">Alter Egos:</h3>
@@ -45,22 +44,26 @@ class Character extends React.Component {
             </ul>
           </section>
           <section className="character__list">
+            <h3 className="character__list-title">Relatives:</h3>
+            <ul>
+              {character.relatives.replaceAll(")", ");").replaceAll(");,", ");").split(";").map((relative, i) => {
+                return (
+                  <li key={relative + i} className="character__group">{relative}</li>
+                );
+              })}
+            </ul>
+          </section>
+          <section className="character__list">
             <h3 className="character__list-title">Groups:</h3>
             <ul>
-              {character.groupAffiliation.map((group, i) => {
+              {character.groupAffiliation.replaceAll(");", "),").split(",").map((group, i) => {
                 return (
-                  <li key={group + i} className="character__group">{group.name}</li>
+                  <li key={group + i} className="character__group">{group}</li>
                 );
               })}
             </ul>
           </section>
         </div>
-
-        {/* <ul>Ralatives: {character.connections.relatives.split(`;`).map((relative, i) => {
-          return (
-            <li key={relative + i}>{relative}</li>
-          );
-        })}</ul> */}
       </div>
     );
   }
