@@ -1,15 +1,17 @@
 .characters {
+  color: whitesmoke;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   border: 2px solid green;
   &__item {
     text-align: center;
-    width: 270px;
-    margin: 0;
-    padding: 0;
-    border: 2px solid red;
+    // width: 270px;
+    margin: 10px;
+    // border: 2px solid red;
+    border-radius: 5px;
     list-style-type: none;
+    background-color: rgba(33, 33, 33, 0.9);
   }
   &__item-title {
     display: flex;
@@ -17,5 +19,20 @@
     align-items: flex-end;
     font-size: 22px;
     // border: 2px solid yellow;
+  }
+  &__item-image {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 20px;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
   }
 }

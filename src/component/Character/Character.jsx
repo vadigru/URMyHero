@@ -56,7 +56,7 @@ class Character extends React.Component {
           <section className="character__list">
             <h3 className="character__list-title">Groups:</h3>
             <ul>
-              {character.groupAffiliation.replaceAll(");", "),").split(",").map((group, i) => {
+              {character.groupAffiliation.replaceAll(")", "),").split(",").map((group, i) => {
                 return (
                   <li key={group + i} className="character__group">{group}</li>
                 );
