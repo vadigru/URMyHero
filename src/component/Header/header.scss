@@ -1,17 +1,18 @@
 .header {
-  display: flex;
-  // flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  border: 2px solid red;
+    display: flex;
+    // flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    border: 2px solid red;
 
-  &__title {
-    // margin-right: auto;
-    // margin-left: 50px;
-    border: 2px solid blue;
-  }
-  &:hover {
-    cursor: pointer;
-  }
+    &__title {
+        // margin-right: auto;
+        // margin-left: 50px;
+        border: 2px solid blue;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
 }

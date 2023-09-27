@@ -5,13 +5,13 @@ import './message.scss';
 
 
 const Message = (props) => {
-  return (
-    <span className="message">{props.message}</span>
-  );
+    return (
+        <span className="message">{props.message}</span>
+    );
 }
 
 Message.propTypes = {
-  message: PropTypes.string,
+    message: PropTypes.string,
 };
 
 export default Message;
