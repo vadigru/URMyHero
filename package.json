@@ -1,6 +1,6 @@
 {
     "name": "react-urmyhero",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Superhero searcher app written on React",
     "scripts": {
         "build": "webpack --mode production",
