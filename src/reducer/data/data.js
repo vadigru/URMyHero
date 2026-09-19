@@ -8,7 +8,7 @@ import { charactersCount } from '../../constants.js';
 import { array } from 'prop-types';
 
 // const baseUrl = `https://comicvine.gamespot.com/api/`;
-const baseUrl = `https://www.superheroapi.com/api.php/`;
+const baseUrl = `https://www.superheroapi.com/api/`;
 
 const initialState = {
     data: [],
@@ -73,12 +73,12 @@ const Operation = {
                 }
 
                 // const queryParams = `characters/?api_key=f768f741063f78c61004758737afa932be2d4d8d&filter=name:${query}&limit=${charactersCount}&offset=${startFrom}&format=json`;
-                const queryParams = `1927473677409570/search/${query}`;
+                const queryParams = `f90a6c5a05775a06b5fc9e6591fe5e9f/search/${query}`;
                 const options = {
                     method: `GET`,
                     // url: `http://www.omdbapi.com/?t=${this.state.query}&plot=full&apikey=a74a9baa`,
                     // url: `http://www.omdbapi.com/?s=${this.state.query}&apikey=a74a9baa`,
-                    // url: `https://superheroapi.com/api/1927473677409570/search/${this.state.query}`,
+                    // url: `https://superheroapi.com/api/f90a6c5a05775a06b5fc9e6591fe5e9f/search/${this.state.query}`,
                     mode: 'cors',
                     // url: baseUrl + queryParams,
                     headers: {
@@ -130,9 +130,9 @@ const Operation = {
 
                 let queryParams;
                 if (isNaN(id)) {
-                    queryParams = `1927473677409570/search/${id}`;
+                    queryParams = `f90a6c5a05775a06b5fc9e6591fe5e9f/search/${id}`;
                 } else {
-                    queryParams = `1927473677409570/${id}`;
+                    queryParams = `f90a6c5a05775a06b5fc9e6591fe5e9f/${id}`;
                 }
                 console.log('ID', id);
 
@@ -148,7 +148,7 @@ const Operation = {
                     }
                     // url: `http://www.omdbapi.com/?t=${this.state.query}&plot=full&apikey=a74a9baa`,
                     // url: `http://www.omdbapi.com/?s=${this.state.query}&apikey=a74a9baa`,
-                    // url: `https://superheroapi.com/api/1927473677409570/${id}`,
+                    // url: `https://superheroapi.com/api/f90a6c5a05775a06b5fc9e6591fe5e9f/${id}`,
                     // url: baseUrl + queryParams,
                     // url: `https://api.shortboxed.com/comics/v1/new`
                 };
